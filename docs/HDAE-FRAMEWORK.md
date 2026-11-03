@@ -1047,6 +1047,79 @@ For critical production operations, do not execute destructive or irreversible a
 
 If a critical implementation cannot be meaningfully understood or verified, do not mark it approved. Simplify the design, investigate further, use safer alternatives, or seek qualified expertise.
 
+## Stage-End Verification and Defect Resolution Protocol
+
+At the end of every implementation stage, before requesting a stage gate review, the AI implementation agent MUST conduct a structured verification cycle.
+
+### 1. Requirements and Feature Verification
+- Review every feature, requirement and acceptance criterion assigned to the current stage.
+- Verify that each feature behaves according to its intended functionality.
+- Test normal usage, invalid inputs, boundary conditions and relevant error scenarios.
+- Verify that features work together correctly, not merely in isolation.
+- Identify incomplete, incorrectly implemented or non-functional features.
+
+### 2. Testing
+Select appropriate tests based on the stage and implementation:
+- Unit testing.
+- Integration testing.
+- End-to-end testing.
+- Functional and acceptance testing.
+- Regression testing.
+- Security and performance testing where relevant.
+
+Execute existing automated tests and create additional tests where necessary. Do not assume that a feature works simply because its code exists or the application runs without errors.
+
+### 3. Bug Detection and Resolution
+For every defect discovered:
+- Describe the defect and steps to reproduce it.
+- Classify its severity and priority.
+- Investigate its underlying cause.
+- Propose and implement an appropriate correction within the approved task scope.
+- Retest the affected functionality after correction.
+- Run relevant regression tests to ensure the correction has not broken existing functionality.
+
+Do not silently ignore defects, conceal failed tests or mark unresolved issues as fixed.
+
+If a defect requires an architectural change, affects approved requirements or exceeds the authorized implementation scope, stop and request human direction.
+
+### 4. Stage Verification Report
+Before presenting the stage for review, provide:
+
+- Features and requirements tested.
+- Tests executed and their results.
+- Defects discovered and their severity.
+- Defects fixed and successfully retested.
+- Outstanding defects and known limitations.
+- Regression testing results.
+- Test coverage and any important testing gaps.
+- Security, reliability and performance observations where applicable.
+
+Clearly distinguish between tests that passed, failed, were blocked or were not performed. Never claim that something was tested without actual verification evidence.
+
+### 5. Stage Gate Decision
+A stage cannot receive an unconditional PASS unless:
+- All mandatory acceptance criteria are satisfied.
+- All required tests have been executed successfully.
+- No unresolved critical or high-severity defects remain.
+- Relevant regression tests pass.
+- Outstanding risks and limitations are disclosed.
+- Required verification evidence is available.
+
+Use the established HDAE gate outcomes:
+
+PASS — Stage requirements have been verified and satisfied.
+
+CONDITIONAL PASS — Only explicitly accepted, non-critical outstanding issues remain, with documented conditions and follow-up actions.
+
+FAIL — Mandatory requirements remain unsatisfied, critical defects exist, or sufficient verification evidence is unavailable.
+
+The human retains final authority over stage acceptance and progression.
+
+### 6. Human-Owned Documentation
+At the end of verification, identify the relevant findings the human should record in the Verification Evidence Register, Risk and Technical Debt Register, and other applicable engineering records.
+
+Do not independently author or modify these human-owned records.
+
 ---
 
 # PART X — THE ENGINEERING KNOWLEDGE SYSTEM
